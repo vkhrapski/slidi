@@ -8,5 +8,5 @@ module.exports = {
     uri: 'mongodb://localhost/slidi-dev'
   },
 
-  seedDB: true
+  seedDB: false
 };
