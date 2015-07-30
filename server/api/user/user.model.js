@@ -3,7 +3,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var crypto = require('crypto');
-var authTypes = ['github', 'twitter', 'facebook', 'google'];
+var authTypes = ['vkontakte', 'twitter', 'facebook', 'google'];
 
 var UserSchema = new Schema({
   name: String,
@@ -18,7 +18,7 @@ var UserSchema = new Schema({
   facebook: {},
   twitter: {},
   google: {},
-  github: {}
+  presentations: [{type: Schema.ObjectId, ref: 'Presentation'}]
 });
 
 /**
@@ -41,7 +41,8 @@ UserSchema
   .get(function() {
     return {
       'name': this.name,
-      'role': this.role
+      'role': this.role,
+      'presentations': this.presentations
     };
   });
 
