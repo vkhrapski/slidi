@@ -27,6 +27,7 @@ exports.create = function (req, res, next) {
   var newUser = new User(req.body);
   newUser.provider = 'local';
   newUser.role = 'user';
+  newUser.presentations = [];
   newUser.save(function(err, user) {
     if (err) return validationError(res, err);
     var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60*5 });
@@ -40,11 +41,14 @@ exports.create = function (req, res, next) {
 exports.show = function (req, res, next) {
   var userId = req.params.id;
 
-  User.findById(userId, function (err, user) {
-    if (err) return next(err);
-    if (!user) return res.status(401).send('Unauthorized');
-    res.json(user.profile);
-  });
+  User
+    .findById(userId)
+    .populate('presentations')
+    .exec(function (err, user) {
+      if (err) return next(err);
+      if (!user) return res.status(401).send('Unauthorized');
+      res.json(user.profile);
+    });
 };
 
 /**
@@ -84,13 +88,29 @@ exports.changePassword = function(req, res, next) {
  */
 exports.me = function(req, res, next) {
   var userId = req.user._id;
-  User.findOne({
-    _id: userId
-  }, '-salt -hashedPassword', function(err, user) { // don't ever give out the password or salt
-    if (err) return next(err);
-    if (!user) return res.status(401).send('Unauthorized');
-    res.json(user);
-  });
+  User
+    .findOne({_id: userId}, '-salt -hashedPassword')
+    .populate('presentations')
+    .exec(function(err, user) { // don't ever give out the password or salt
+      if (err) return next(err);
+      if (!user) return res.status(401).send('Unauthorized');
+      res.json(user);
+    });
+};
+
+/**
+ * Update my info
+ */
+exports.update = function(req, res, next) {
+  var userId = req.user._id;
+  /*User
+    .findOne({_id: userId}, '-salt -hashedPassword')
+    .populate('presentations')
+    .exec(function(err, user) { // don't ever give out the password or salt
+      if (err) return next(err);
+      if (!user) return res.status(401).send('Unauthorized');
+      res.json(user);
+    });*/
 };
 
 /**
