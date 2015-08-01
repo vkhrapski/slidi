@@ -5,7 +5,6 @@ var mongoose = require('mongoose'),
 
 var PresentationSchema = new Schema({
   title: String,
-  createdAt: {type: Date, default: Date.now()},
   tags: [{type: String}],
   slides: [{type: String}]
 });
