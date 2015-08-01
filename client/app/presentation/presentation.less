@@ -1,10 +1,3 @@
-@main-red: #DF6069;
-@main-blue: #4393B9;
-
-.thing-form {
-  margin: 20px 0;
-}
-
 #banner {
     border-bottom: none;
     margin-top: -20px;
@@ -34,4 +27,94 @@
 
 .navbar-text {
     margin-left: 15px;
+}
+
+.presentation-block {
+    vertical-align: text-top;
+    display: inline-block;
+    border: solid @main-red 2px;
+    border-radius: @default-border-radius;
+    width: 20%;
+    margin: 10px;
+    position: relative;
+    > .action-close {
+        position: absolute;
+        top: 3px;
+        right: 5px;
+        color: @main-red;
+        &:hover {
+            color: @main-red-hover;
+        }
+    }
+    > .action-edit {
+        position: absolute;
+        bottom: 3px;
+        right: 5px;
+        color: @main-red;
+        &:hover {
+            color: @main-red-hover;
+        }
+    }
+}
+
+.presentation-title-block {
+    padding: 0 40px 0 20px;
+}
+
+.presentation-actions {
+    position: relative;
+    height: 100%;
+    
+}
+
+.presentation-title {
+    border: 0;
+    margin-top: 5px;
+    width: 100%; 
+    text-align: center;
+}
+
+.presentation-tags-block {
+    padding: 0 20px 0 5px;
+    text-align: center;
+    .presentation-tag-block {
+        padding: 5px;
+        width: 45%;
+        display: inline-block;
+    }
+    .presentation-tag {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        display: inline-block;
+    }
+}
+
+.btn-tag {
+    color: #ffffff;
+    background-color: @main-blue;
+    border-color: @main-blue;
+    &:focus {
+        color: #ffffff;
+        background-color: @main-blue-hover;
+        border-color: @main-blue-hover - #111;
+    }
+    &:hover {
+        color: #ffffff;
+        background-color: @main-blue-hover;
+        border-color: @main-blue-hover - #111;
+    }
+}
+
+.action-add-tag {
+    color: @main-red;
+    background-color: #ffffff;
+    border-color: #ffffff;
+    font-size: 1.5em;
+    vertical-align: middle;
+    &:hover {
+        color: @main-red-hover;
+        background-color: #ffffff;
+        border-color: #ffffff;
+    }
 }
