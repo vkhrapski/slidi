@@ -11,12 +11,13 @@
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12">
-			<div class="presentation-block" ng-repeat="presentation in presentations">
+			<div class="presentation-block" ng-mouseenter="actionActive = true" 
+				ng-mouseleave="actionActive = false" ng-repeat="presentation in presentations">
 
-				<div class="block-action action-edit">
-					<i class="fa fa-pencil" ng-click="builder(presentation._id)"></i>
+				<div ng-class="{highlight: actionActive}" class="action-block action-edit">
+					<i class="fa fa-pencil" ng-click="builder(presentation)"></i>
 				</div>
-				<div class="block-action action-close">
+				<div ng-class="{highlight: actionActive}" class="action-block action-delete-presentation">
 					<i class="fa fa-times" ng-click="delete(presentation._id)"></i>
 				</div>
 
@@ -24,13 +25,20 @@
 					<input class="presentation-title" type="text" ng-model="presentation.title">
 				</div>
 				<div class="presentation-tags-block">
-				  <div class="presentation-tag-block" ng-repeat="tag in presentation.tags">
-				    <input class="btn btn-tag presentation-tag" type="text"  ng-model="tag">
-				  </div>
-				  <div class="presentation-tag-block">
-				  	<i class="block-action action-add-tag fa fa-plus-circle" ng-click="create()"></i>
-				  </div>
+					<div class="presentation-tag-block" ng-mouseenter="tagActive = true" ng-mouseleave="tagActive = false" 
+						ng-repeat="tag in presentation.tags">
+						<input class="btn btn-tag presentation-tag" type="text" ng-model="tag">
+						<div ng-class="{highlight: tagActive}" class="action-block action-delete-tag">
+							<i class="fa fa-times" ng-click="deleteTag(presentation.tags, $index)"></i>
+						</div>
+					</div>
+					<div class="presentation-tag-block">
+						<i ng-class="{highlight: actionActive}" class="action-block action-add-tag fa fa-plus-circle" ng-click="createTag()"></i>
+					</div>
 				</div>
+			</div>
+			<div class="presentation-add-block">
+				<i class="presentation-add-action fa fa-plus-circle" ng-click="create()"></i>
 			</div>
 		</div>
 	</div>
