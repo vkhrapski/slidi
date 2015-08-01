@@ -37,28 +37,61 @@
     width: 20%;
     margin: 10px;
     position: relative;
-    > .action-close {
-        position: absolute;
-        top: 3px;
-        right: 5px;
-        color: @main-red;
-        &:hover {
-            color: @main-red-hover;
-        }
+    .action-block {
+        opacity: 0;
     }
-    > .action-edit {
-        position: absolute;
-        bottom: 3px;
-        right: 5px;
-        color: @main-red;
-        &:hover {
-            color: @main-red-hover;
-        }
+    .highlight {
+        opacity: 1;
+        transition: 0.6s linear all;
+    }
+}
+
+.action-delete-presentation {
+    position: absolute;
+    top: 3px;
+    right: 5px;
+    color: @main-red;
+    &:hover {
+        color: @main-red-hover;
+    }
+}
+
+.action-add-tag {
+    color: @main-red;
+    background-color: white;
+    border-color: white;
+    font-size: 1.5em;
+    vertical-align: middle;
+    &:hover {
+        color: @main-red-hover;
+        background-color: white;
+        border-color: white;
+    }
+}
+
+.action-delete-tag {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    color: #C7C7C7;
+    size: 0.1em;
+    &:hover {
+        color: white;
+    }
+}
+
+.action-edit {
+    position: absolute;
+    bottom: 3px;
+    right: 5px;
+    color: @main-red;
+    &:hover {
+        color: @main-red-hover;
     }
 }
 
 .presentation-title-block {
-    padding: 0 40px 0 20px;
+    padding: 0 20px 0 20px;
 }
 
 .presentation-actions {
@@ -75,46 +108,60 @@
 }
 
 .presentation-tags-block {
-    padding: 0 20px 0 5px;
+    padding: 0 5px 0 5px;
     text-align: center;
     .presentation-tag-block {
+        position: relative;
         padding: 5px;
         width: 45%;
         display: inline-block;
     }
     .presentation-tag {
         margin: 0;
-        padding: 0;
+        padding: 0 0 0 5px;
         width: 100%;
         display: inline-block;
+        text-align: left;
     }
+}
+
+.tag-highlight { 
+    opacity: 1;
 }
 
 .btn-tag {
-    color: #ffffff;
+    color: white;
     background-color: @main-blue;
     border-color: @main-blue;
     &:focus {
-        color: #ffffff;
+        color: white;
         background-color: @main-blue-hover;
         border-color: @main-blue-hover - #111;
     }
     &:hover {
-        color: #ffffff;
+        color: white;
         background-color: @main-blue-hover;
         border-color: @main-blue-hover - #111;
     }
 }
 
-.action-add-tag {
-    color: @main-red;
-    background-color: #ffffff;
-    border-color: #ffffff;
-    font-size: 1.5em;
+.presentation-add-block {
+    border: solid @main-blue-hover 2px;
+    border-radius: @default-border-radius;
+    width: 20%;
+    margin: 10px;
+    text-align: center;
     vertical-align: middle;
+    background: @main-blue;
     &:hover {
-        color: @main-red-hover;
-        background-color: #ffffff;
-        border-color: #ffffff;
+        background: @main-blue-hover;
+    }
+    .presentation-add-action {
+        font-size: 2em;
+        color: white;
+        background: @main-blue;
+        &:hover {
+            background: @main-blue-hover;
+        }
     }
 }
