@@ -1,0 +1,60 @@
+html, body {
+    height: 100%;
+}
+
+.slide-items-block {
+	width: 100%;
+	padding: 10px;
+	background: @main-blue;
+	margin-top: -20px;
+
+	.slide-item-block {
+		width: 7%;
+		display: inline-block;
+		margin: 10px;
+		border: 2px solid transparent;
+		padding: 5px;
+		.item-icon {
+			color: white;
+			text-align: center;
+			font-size: 2em;
+			.geometric-shapes {
+				background: url('assets/images/geometrical.svg');
+			}
+		}
+		.item-description {
+			color: white;
+			text-align: center;
+		}
+		&:hover {
+			border: solid white 2px;
+		}
+	}
+
+}
+
+.slides-preview-block {
+	border-right: solid 5px @main-blue;
+	.slide-preview-block {
+		border: solid 5px @main-red;
+		margin: 10px;
+	}
+}
+
+.slide-block {
+	padding: 20px;
+	.slide {
+		border: solid @main-red 5px;
+	}
+}
+
+.full-height {
+	height: 100%;
+}
+
+
+
+
+
+
+
