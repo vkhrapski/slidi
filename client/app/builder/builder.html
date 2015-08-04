@@ -1,7 +1,7 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-<div class="container-fluid part-height">
+<div class="container-fluid">
 	<div class="row">
-		<div class="slide-items-block col-xs-12">
+		<div class="slide-items-block">
 	    	<div class="slide-item-block">
 				<div class='item-icon'>T</div>
 				<div class="item-description">Text</div>
@@ -24,24 +24,40 @@
 				</div>
 				<div class="item-description">Shape</div>
 			</div>
+			<div class="slide-item-block">
+				<div class='item-icon'>
+					<i class="fa fa-television"></i>
+				</div>
+				<div class="item-description">Format</div>
+			</div>
+			<div class="slide-item-block">
+				<div class='item-icon'>
+					<i class="fa fa-floppy-o"></i>
+				</div>
+				<div class="item-description">Save</div>
+			</div>
 	    </div>
 	</div>
 	
-	<div class="row">
-		    <div class="slides-preview-block col-xs-2">
-		    	<div class="slide-preview-block">Slide</div>
-		    	<div class="slide-preview-block">Slide</div>
-		    	<div class="slide-preview-block">Slide</div>
-		    	<div class="slide-preview-block">Slide</div>
-		    	<div class="slide-preview-block">Slide</div>
-		    	<div class="slide-preview-block">Slide</div>
-		    	<div class="slide-preview-block">Slide</div>
-		    	<div class="slide-preview-block">Slide</div>
+	<div class="row content-block">
+		<div class="slide-block col-xs-10" ng-bind-html="currentSlide">
+	    	
+	    </div>
+
+	    <div class="slides-preview-block col-xs-2">
+			<div class="slide-preview-block" ng-click="setCurrentSlide($index)" ng-repeat="slide in presentation.slides">
+				<div>
+					{{$index + 1}}
+				</div>
+				<div class="action-block action-close">
+					<i class="fa fa-times"></i>
+				</div>
+				<div class="action-block action-add-after">
+					<i class="fa fa-plus-circle"></i>
+				</div>
 			</div>
-			<div class="slide-block col-xs-10">
-		    	<div class="slide square-format">
-		    		<div class="">Slide</div>
-		    	</div>
-		    </div>
+		</div>
+
 	</div>
 </div>
+
