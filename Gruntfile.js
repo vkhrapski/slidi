@@ -444,7 +444,7 @@ module.exports = function (grunt) {
 
     // Test settings
     karma: {
-      ch: {
+      chrome: {
         configFile: 'karma.conf.js',
       }
     },
