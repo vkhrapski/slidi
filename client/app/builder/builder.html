@@ -2,17 +2,18 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="slide-items-block">
-	    	<div class="slide-item-block">
+	    	<div class="slide-item-block" ng-click="addText()">
 				<div class='item-icon'>T</div>
 				<div class="item-description">Text</div>
 			</div>
-			<div class="slide-item-block">
+
+			<div class="slide-item-block" ng-click="open()">
 				<div class='item-icon'>
 					<i class="fa fa-picture-o"></i>
 				</div>
 				<div class="item-description">Picture</div>
 			</div>
-			<div class="slide-item-block">
+			<div class="slide-item-block" id="pic">
 				<div class='item-icon'>
 					<i class="fa fa-youtube"></i>
 				</div>
@@ -40,12 +41,16 @@
 	</div>
 	
 	<div class="row content-block">
-		<div class="slide-block col-xs-10" ng-bind-html="currentSlide">
-	    	
+		<div class="slide-block col-xs-10">
+			<div class="slide-wrapper" ng-class="presentation.format">
+		    	<div class="slide" ng-class="presentation.format">
+					<div ng-repeat="items in currentSlide.items track by $index" ng-bind-html="items | html"></div>
+		    	</div>	
+	    	</div>
 	    </div>
 
 	    <div class="slides-preview-block col-xs-2">
-			<div class="slide-preview-block" ng-click="setCurrentSlide($index)" ng-repeat="slide in presentation.slides">
+			<div class="slide-preview-block" ng-click="setCurrentSlide($index)" ng-repeat="slide in presentation.slides track by $index">
 				<div>
 					{{$index + 1}}
 				</div>
@@ -60,4 +65,24 @@
 
 	</div>
 </div>
+
+<script type="text/ng-template" id="picture-repository.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Picture Repository</h3>
+    </div>
+    <div class="modal-body">
+	</div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">Select</button>
+        <button class="btn btn-primary" ng-click="upload()">Upload</button>
+        <button class="btn btn-danger" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
+
+<script type="text/javascript">  
+  $('#pic').cloudinary_upload_widget(
+    { cloud_name: 'vkhrapski', upload_preset: 'qiorzz9s', 
+      cropping: 'server', 'folder': 'user_photos' },
+    function(error, result) { console.log(error, result) });
+</script>
 
