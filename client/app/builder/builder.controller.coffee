@@ -25,7 +25,8 @@
 			$scope.addText = () ->
 				$scope.currentSlide.items.push '<div style="position:absolute;left:365px;top:275px;">Text</div>'
 			
-			$scope.addVideo = () ->
+			$scope.addVideo = (link) ->
+				$scope.currentSlide.items.push '<iframe type="text/html" width="540" height="390" src="https://www.youtube.com/embed/' + link + '"/>'
 
 			$scope.openPictureRepo = () ->
 				pictureModal = $modal.open
@@ -40,9 +41,7 @@
 					controller: 'YoutubeModalCtrl'
 				youtubeModal.result
 					.then (link) ->
-						console.log $scope.currentSlide.video
-						$scope.currentSlide.video.push link
-						console.log $scope.currentSlide.video
+						$scope.addVideo link
 )()
 
 (->
