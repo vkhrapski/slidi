@@ -5,20 +5,26 @@ angular.module 'slidiApp', [
   'ngResource',
   'ngSanitize',
   'ui.router',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'angular-cloudinary',
+  'ngVideoPreview'
 ]
-.config ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) ->
+.config ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, cloudinaryProvider) ->
   $urlRouterProvider
   .otherwise '/'
 
   $locationProvider.html5Mode true
   $httpProvider.interceptors.push 'authInterceptor'
+  cloudinaryProvider.config
+    cloud_name: 'vkhrapski'
+    upload_preset: 'qiorzz9s'
 
 .factory 'authInterceptor', ($rootScope, $q, $cookieStore, $location) ->
   # Add authorization token to headers
   request: (config) ->
     config.headers = config.headers or {}
-    config.headers.Authorization = 'Bearer ' + $cookieStore.get 'token' if $cookieStore.get 'token'
+    if $cookieStore.get('token') and config.url.indexOf('api.cloudinary.com') == -1
+      config.headers.Authorization = 'Bearer ' + $cookieStore.get('token')
     config
 
   # Intercept 401s and redirect you to login
