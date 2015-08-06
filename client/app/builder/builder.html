@@ -1,3 +1,4 @@
+
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div class="container-fluid">
 	<div class="row">
@@ -7,13 +8,14 @@
 				<div class="item-description">Text</div>
 			</div>
 
-			<div class="slide-item-block" ng-click="open()">
+			<div class="slide-item-block" ng-click="openPictureRepo()">
 				<div class='item-icon'>
 					<i class="fa fa-picture-o"></i>
 				</div>
 				<div class="item-description">Picture</div>
 			</div>
-			<div class="slide-item-block" id="pic">
+
+			<div class="slide-item-block" ng-click="addVideo()">
 				<div class='item-icon'>
 					<i class="fa fa-youtube"></i>
 				</div>
@@ -44,7 +46,8 @@
 		<div class="slide-block col-xs-10">
 			<div class="slide-wrapper" ng-class="presentation.format">
 		    	<div class="slide" ng-class="presentation.format">
-					<div ng-repeat="items in currentSlide.items track by $index" ng-bind-html="items | html"></div>
+					<div ng-repeat="item in currentSlide.items track by $index" ng-bind-html="item | html"></div>
+					
 		    	</div>	
 	    	</div>
 	    </div>
@@ -74,15 +77,23 @@
 	</div>
     <div class="modal-footer">
         <button class="btn btn-primary" ng-click="ok()">Select</button>
-        <button class="btn btn-primary" ng-click="upload()">Upload</button>
+        <button class="btn btn-primary" ng-click="upload()" ng-model="file" ngf-select ng-file-select>Upload</button>
         <button class="btn btn-danger" ng-click="cancel()">Cancel</button>
     </div>
 </script>
 
-<script type="text/javascript">  
-  $('#pic').cloudinary_upload_widget(
-    { cloud_name: 'vkhrapski', upload_preset: 'qiorzz9s', 
-      cropping: 'server', 'folder': 'user_photos' },
-    function(error, result) { console.log(error, result) });
+<script type="text/ng-template" id="youtube.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Youtube</h3>
+    </div>
+    <div class="modal-body">
+    	Link: <input type="text" ng-model="link">
+	</div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">Submit</button>
+        <button class="btn btn-danger" ng-click="cancel()">Cancel</button>
+    </div>
 </script>
+
+
 
