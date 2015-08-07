@@ -4,6 +4,7 @@ var User = require('./user.model');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
+var cloudinary = require('cloudinary');
 
 var validationError = function(res, err) {
   return res.status(422).json(err);
@@ -95,6 +96,18 @@ exports.me = function(req, res, next) {
       if (err) return next(err);
       if (!user) return res.status(401).send('Unauthorized');
       res.json(user);
+    });
+};
+
+
+/**
+ * Get my picture list from cloudinary
+ */
+exports.listPicture = function(req, res, next) {
+  var userId = req.user._id;
+  cloudinary.api.resources_by_tag(userId, 
+    function(result) {
+      res.json(result);
     });
 };
 
