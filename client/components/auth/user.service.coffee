@@ -15,3 +15,10 @@ angular.module 'slidiApp'
       params:
         id: 'me'
 
+    getPictures:
+      method: 'GET'
+      params:
+        id: 'me'
+        controller: 'pictures'
+
+
