@@ -86,6 +86,7 @@ angular.module 'slidiApp'
 
     .$promise
 
+  
 
   ###
   Gets all available info on authenticated user
