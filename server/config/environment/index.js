@@ -2,6 +2,7 @@
 
 var path = require('path');
 var _ = require('lodash');
+var cloudinary = require('cloudinary');
 
 function requiredProcessEnv(name) {
   if(!process.env[name]) {
@@ -9,6 +10,12 @@ function requiredProcessEnv(name) {
   }
   return process.env[name];
 }
+
+cloudinary.config({ 
+  cloud_name: 'vkhrapski', 
+  api_key: '249925664158315', 
+  api_secret: 'v-Ax81YdCesoy17k1NX8ewZ-_LY' 
+});
 
 // All configurations will extend these options
 // ============================================
