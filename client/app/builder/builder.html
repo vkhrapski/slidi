@@ -45,8 +45,18 @@
 	<div class="row content-block">
 		<div class="slide-block col-xs-10">
 			<div class="slide-wrapper" ng-class="presentation.format">
-		    	<div class="slide" ng-class="presentation.format">
-					<div ng-repeat="item in currentSlide.items track by $index" ng-bind-html="item | html"></div>
+		    	<div class="slide" ng-class="presentation.format"
+	    		>
+					<div style="{{textBlock.style}}" ng-repeat="textBlock in currentSlide.text track by $index"
+						>
+						{{textBlock.content}}
+					</div>
+					<ng-video-preview style="{{video.style}}" source="youtube"  url="{{video.content}}" 
+						ng-repeat="video in currentSlide.videos track by $index">
+					</ng-video-preview>
+					<cl-image style="{{picture.style}}" public-id="{{picture.content}}" format="jpg" 
+						ng-repeat="picture in currentSlide.pictures track by $index">
+					</cl-image>
 		    	</div>	
 	    	</div>
 	    </div>

@@ -4,35 +4,72 @@
 	angular
 		.module 'slidiApp'
 		.controller 'BuilderCtrl', ($scope, $modal, Auth, $http, $rootScope, User) ->
+			$scope.rect = 
+					'"width":"1000px",
+          "height":"1000px",
+          "top":"0px",
+          "left":"0px"'
 			$scope.presentation = 
 				_id: 1
 				title: '(1)Title'
 				format: 'square-format'
 				tags: ['(1-1)Tag', '(1-2)Tag', '(1-3)Tag', '(1-4)Tag']
 				slides: [
-					items: ['<div style="position:absolute;left:300px;"><h1>Hello</h1></div>', '<img style="position:absolute;left:270px;top:200px;" src="http://res.cloudinary.com/vkhrapski/image/upload/v1438934517/tqdknvgjo7okb1bof78r.jpg">']
+					text: [
+						style: 'position:absolute;left:300px;'
+						content: 'Hello'
+					]
+					pictures: [
+						style: 'position:absolute;left:270px;top:200px;'
+						content:	'tqdknvgjo7okb1bof78r'
+					]
+					videos: [
+					]
+					shapes: [
+					]
 				,
-					items: ['<div style="position:absolute;left:150px;">(2-1)Hello</div>']
+					text: [
+					]
+					pictures: [
+					]
+					videos: [
+						style: ''
+						content: 'https://www.youtube.com/watch?v=bPH9L8jl68Q'
+					]
+					shapes: [
+					]
 				,
-					items: ['<div style="position:absolute;left:150px;">(3-1)Hello</div>']
+					text: [
+					]
+					pictures: [
+						style: 'position:absolute;left:270px;top:200px;'
+						content:	'http://res.cloudinary.com/vkhrapski/image/upload/v1438934517/tqdknvgjo7okb1bof78r.jpg'
+					]
+					videos: [
+					]
+					shapes: [
+					]
 		  	]
 
 			$scope.currentSlide = $scope.presentation.slides[0]
 
-			$scope.addItem = (item) ->
-				$scope.currentSlide.items.push item
-
 			$scope.setCurrentSlide = (index) ->
-				$scope.currentSlide = $scope.presentation.slides[index]
+				$scope.currentSlide = $scope.presentation.slides[index] 
 			
 			$scope.addText = () ->
-				$scope.addItem '<ng-video-preview source="youtube" url="http://youtu.be/VEUfscdqpNg"></ng-video-preview>'#'<div style="position:absolute;left:365px;top:275px;">Text</div>'
+				$scope.currentSlide.text.push
+					style: 'position:absolute;top:400px;left:300px;'
+					content: 'Hello'
 			
 			$scope.addPicture = (url) ->
-				$scope.addItem '<img style="position:absolute;left:100px;top:200px;" src="' + url + '">'
+				$scope.currentSlide.pictures.push
+					style: 'position:absolute;top:400px;left:300px;'
+					content: url
 			
 			$scope.addVideo = (link) ->
-				$scope.addItem '<iframe type="text/html" width="300" height="200" src="https://www.youtube.com/embed/' + link + '"/>'
+				$scope.currentSlide.videos.push
+					style: ''
+					content: link
 
 			$scope.openPictureModal = () ->
 				pictureModal = $modal.open
