@@ -8,7 +8,7 @@
 				<div class="item-description">Text</div>
 			</div>
 
-			<div class="slide-item-block" ng-click="openPictureRepo()">
+			<div class="slide-item-block" ng-click="openPictureModal()">
 				<div class='item-icon'>
 					<i class="fa fa-picture-o"></i>
 				</div>
@@ -27,13 +27,13 @@
 				</div>
 				<div class="item-description">Shape</div>
 			</div>
-			<div class="slide-item-block">
+			<div class="slide-item-block" ng-click="changeFormat()">
 				<div class='item-icon'>
 					<i class="fa fa-television"></i>
 				</div>
 				<div class="item-description">Format</div>
 			</div>
-			<div class="slide-item-block">
+			<div class="slide-item-block" ng-click="">
 				<div class='item-icon'>
 					<i class="fa fa-floppy-o"></i>
 				</div>
@@ -47,7 +47,6 @@
 			<div class="slide-wrapper" ng-class="presentation.format">
 		    	<div class="slide" ng-class="presentation.format">
 					<div ng-repeat="item in currentSlide.items track by $index" ng-bind-html="item | html"></div>
-					
 		    	</div>	
 	    	</div>
 	    </div>
@@ -66,14 +65,19 @@
 			</div>
 		</div>
 
+		
 	</div>
 </div>
 
-<script type="text/ng-template" id="picture-repository.html">
+<script type="text/ng-template" id="picture-modal.html">
     <div class="modal-header">
         <h3 class="modal-title">Picture Repository</h3>
     </div>
     <div class="modal-body">
+		<div class="picture-block" ng-repeat="resource in resources"  ng-click="setActive($index)">
+			<img src="{{resource.url}}">
+			<i ng-show="$index == active" class="fa fa-check-square"></i>
+		</div>
 	</div>
     <div class="modal-footer">
         <button class="btn btn-primary" ng-click="ok()">Select</button>
@@ -82,12 +86,12 @@
     </div>
 </script>
 
-<script type="text/ng-template" id="youtube.html">
+<script type="text/ng-template" id="youtube-modal.html">
     <div class="modal-header">
         <h3 class="modal-title">Youtube</h3>
     </div>
     <div class="modal-body">
-    	Link: <input type="text" ng-model="link">
+    	Video id: <input type="text" ng-model="link">
 	</div>
     <div class="modal-footer">
         <button class="btn btn-primary" ng-click="ok()">Submit</button>
