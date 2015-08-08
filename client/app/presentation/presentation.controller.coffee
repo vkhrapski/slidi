@@ -1,7 +1,7 @@
 'use strict'
 (->
 	angular.module('slidiApp')
-	.controller 'PresentationCtrl', ($scope, $location) ->
+	.controller 'PresentationCtrl', ($scope, $location, Auth) ->
 	  $scope.presentations = [
     	_id: 1
 	    title: '(1)Title'
@@ -34,6 +34,10 @@
         tags: ['tag']
         slides: []
 			)
+
+  	$scope.isLoggedIn = () -> 
+  		Auth.isLoggedIn()
+
 
 	  $scope.delete = (index) ->
 	  	$scope.presentations.splice index, 1
