@@ -32,13 +32,15 @@
 }
 
 .presentation-block {
-    vertical-align: text-top;
-    display: inline-block;
     border: solid @main-red 2px;
     border-radius: @default-border-radius;
-    width: 20%;
-    margin: 10px;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
     position: relative;
+    background: @main-grey;
     .action-block {
         opacity: 0;
     }
@@ -57,17 +59,22 @@
         color: @main-red-hover;
     }
 }
-
-.action-add-tag {
-    color: @main-red;
-    background-color: white;
-    border-color: white;
-    font-size: 1.5em;
-    vertical-align: middle;
-    &:hover {
-        color: @main-red-hover;
-        background-color: white;
+.action-add-tag-block {
+    position: relative;
+    width: 19%;
+    display: inline-block;
+    .action-add-tag {
+        margin: auto;
+        color: @main-blue;
+        background: @main-grey;
         border-color: white;
+        font-size: 1.5em;
+        vertical-align: middle;
+        &:hover {
+            color: @main-blue-hover;
+            background-color: @main-grey;
+            border-color: white;
+        }
     }
 }
 
@@ -93,7 +100,9 @@
 }
 
 .presentation-title-block {
-    padding: 0 20px 0 20px;
+    background: @main-grey;
+    padding: 0;
+    border-radius: 10px;
 }
 
 .presentation-actions {
@@ -103,19 +112,24 @@
 }
 
 .presentation-title {
+    background: @main-grey;
     border: 0;
+    border-radius: 5px;
     margin-top: 5px;
     width: 100%; 
     text-align: center;
+    color: @main-blue-hover;
+    font-size: 1.5em;
+    font-weight: 600;
 }
 
 .presentation-tags-block {
-    padding: 0 5px 0 5px;
-    text-align: center;
+    padding: 0;
+    margin: 0 10px 10px 10px;
     .presentation-tag-block {
         position: relative;
         padding: 5px;
-        width: 50%;
+        width: 20%;
         display: inline-block;
     }
     .presentation-tag {
@@ -156,8 +170,8 @@
 .presentation-add-block {
     border: solid @main-blue-hover 2px;
     border-radius: @default-border-radius;
-    width: 20%;
-    margin: 10px;
+    width: 5%;
+    margin: auto;
     text-align: center;
     vertical-align: middle;
     background: @main-blue;

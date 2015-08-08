@@ -23,19 +23,27 @@
 	    tags: ['(4-1)Tag']
 	    slides: ['<h1>(4-1)Hello</h1>', '<h1>(4-2)Hello</h1>', '<h1>(4-3)Hello</h1>']		
 	  ]
-	  $scope.builder = (presentation) ->
+
+	  $scope.openBuilder = (presentation) ->
 	  	$location.path('builder')
-	  $scope.create = () ->
-	  	$scope.presentations.push
-				_id: Math.floor(Math.random() * 1000)
-				title: 'Title'
-				tags: []
-				slides: []
-			console.log $scope.presentations
-	  		
-	  $scope.delete = (id) ->
-	    $scope.presentations = $scope.presentations.filter(id) -> presentation._id isnt id
+	  
+	  $scope.addPresentation = () ->
+	  	$scope.presentations.push(
+        _id: Math.floor(Math.random() * 1000)
+        title: 'Title'
+        tags: ['tag']
+        slides: []
+			)
+
+	  $scope.delete = (index) ->
+	  	$scope.presentations.splice index, 1
 		
 	  $scope.update = (presentation) ->
 	    $scope.presentation.title = 'Updated'
+		
+    $scope.addTag = (tags) ->
+    	tags.push 'New tag'
+
+  	$scope.deleteTag = (tags, index) ->
+    	tags.splice index, 1
 )()

@@ -2,23 +2,22 @@
 
 <header class="hero-unit" id="banner">
   <div class="container">
-    <h1>'Allo, 'Allo!</h1>
-    <p class="lead">Kick-start your next web app with Angular Fullstack</p>
-    <img src="assets/images/slidi-logo.png" alt="slidi" class="img-rounded"> 
+    <h1>Slidi</h1>
+    <img width="140px" src="assets/images/slidi-logo.png" alt="slidi" class="img-rounded"> 
   </div>
 </header>
 
 <div class="container">
-	<div class="row">
+	<div class="row content-container">
 		<div class="col-lg-12">
 			<div class="presentation-block" ng-mouseenter="actionActive = true" 
 				ng-mouseleave="actionActive = false" ng-repeat="presentation in presentations">
 
 				<div ng-class="{highlight: actionActive}" class="action-block action-edit">
-					<i class="fa fa-pencil" ng-click="builder(presentation)"></i>
+					<i class="fa fa-pencil" ng-click="openBuilder(presentation)"></i>
 				</div>
 				<div ng-class="{highlight: actionActive}" class="action-block action-delete-presentation">
-					<i class="fa fa-times" ng-click="delete(presentation._id)"></i>
+					<i class="fa fa-times" ng-click="delete($index)"></i>
 				</div>
 
 				<div class="presentation-title-block">
@@ -26,7 +25,7 @@
 				</div>
 				<div class="presentation-tags-block">
 					<div class="presentation-tag-block" ng-mouseenter="tagActive = true" ng-mouseleave="tagActive = false" 
-						ng-repeat="tag in presentation.tags">
+						ng-repeat="tag in presentation.tags track by $index">
 						<input class="btn btn-tag presentation-tag" type="text" ng-model="tag">
 						<div ng-class="{highlight: tagActive}" class="action-block action-delete-tag">
 							<i class="fa fa-times" ng-click="deleteTag(presentation.tags, $index)"></i>
@@ -35,13 +34,13 @@
 							<i class="fa fa-tag"></i>
 						</div>
 					</div>
-					<div class="presentation-tag-block">
-						<i ng-class="{highlight: actionActive}" class="action-block action-add-tag fa fa-plus-circle" ng-click="createTag()"></i>
+					<div class="action-add-tag-block">
+						<i ng-class="{highlight: actionActive}" class="action-block action-add-tag fa fa-plus-circle" ng-click="addTag(presentation.tags)"></i>
 					</div>
 				</div>
 			</div>
-			<div class="presentation-add-block">
-				<i class="presentation-add-action fa fa-plus-circle" ng-click="create()"></i>
+			<div class="presentation-add-block" ng-click="addPresentation()">
+				<i class="presentation-add-action fa fa-plus-circle" ></i>
 			</div>
 		</div>
 	</div>

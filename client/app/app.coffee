@@ -7,7 +7,8 @@ angular.module 'slidiApp', [
   'ui.router',
   'ui.bootstrap',
   'angular-cloudinary',
-  'ngVideoPreview'
+  'ngVideoPreview',
+  'ngCkeditor'
 ]
 .config ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, cloudinaryProvider) ->
   $urlRouterProvider

@@ -47,9 +47,8 @@
 			<div class="slide-wrapper" ng-class="presentation.format">
 		    	<div class="slide" ng-class="presentation.format"
 	    		>
-					<div style="{{textBlock.style}}" ng-repeat="textBlock in currentSlide.text track by $index"
-						>
-						{{textBlock.content}}
+					<div style="{{textBlock.style}}" ng-repeat="textBlock in currentSlide.text track by $index">
+						<textarea ckeditor="editorOptions" ng-model="textBlock.content"></textarea>
 					</div>
 					<ng-video-preview style="{{video.style}}" source="youtube"  url="{{video.content}}" 
 						ng-repeat="video in currentSlide.videos track by $index">
