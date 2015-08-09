@@ -25,9 +25,5 @@
 		$scope.isLoggedIn = () -> 
 			Auth.isLoggedIn()
 
-		words = TagService.list()
-		$('#tags').jQCloud(words, 
-			width: 600
-			height: 250
-		)
+		$scope.words = TagService.list()
 )()
