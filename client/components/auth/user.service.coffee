@@ -21,4 +21,9 @@ angular.module 'slidiApp'
         id: 'me'
         controller: 'pictures'
 
+    update: 
+      method: 'PUT'
+      params:
+        id: 'me'
+
 
