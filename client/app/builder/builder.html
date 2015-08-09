@@ -60,14 +60,21 @@
 	    </div>
 
 	    <div class="slides-preview-block col-xs-2">
-			<div class="slide-preview-block" ng-click="setCurrentSlide($index)" ng-repeat="slide in presentation.slides track by $index">
+			<div class="slide-preview-block" ng-click="setCurrentSlide($index)" ng-repeat="slide in presentation.slides track by $index"
+				ng-mouseenter="activeSlide = true" ng-mouseleave="activeSlide = false"
+			>
 				<div>
 					{{$index + 1}}
 				</div>
-				<div class="action-block action-close">
+				<div class="action-block action-add-slide">
+					<i class="fa fa-plus-circle"></i>
+				</div>
+				<div ng-class="{highlight: activeSlide}" class="action-block action-close">
 					<i class="fa fa-times"></i>
 				</div>
-				<div class="action-block action-add-after">
+			</div>
+			<div class="default-add-slide-block">
+				<div class="default-add-slide">
 					<i class="fa fa-plus-circle"></i>
 				</div>
 			</div>

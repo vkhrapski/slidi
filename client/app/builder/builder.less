@@ -51,26 +51,59 @@ html, body {
 			width: 200px;
 			margin-left: auto;
 			margin-right: auto;
-			margin-top: 30px;
-			margin-bottom: 50px;
+			margin-top: 50px;
 			.action-block {
 				position: absolute;
 			}
 			.action-close {
 				top: 0;
 				right: 5px;
-				font-size: 1.5em;
+				font-size: @font-size-half;
 				color: @main-blue;
+				opacity: 0;
+				&:hover {
+					color: @main-blue-hover;
+				}
 			}
-			.action-add-after {
-				bottom: -40px;
-				right: 45%;font-size: 1.5em;
-				font-size: 1.5em;
+			.action-add-slide {
+				top: -51px;
+				width: 200px;
+				height: 50px;
+				font-size: @font-size-half;
 				color: @main-blue;	
+				opacity: 0;
+				transition: 0.2s linear all;
+				&:hover {
+					opacity: 1;
+					transition: 0.6s linear all;
+				}
+				i {
+					position: relative;
+					margin: 17px 0 0 45%;
+				}
+			}
+			.highlight {
+		        opacity: 1;
+		        transition: 0.6s linear all;
+		    }
+		}
+		.default-add-slide-block {
+			position: relative;
+			.default-add-slide {
+				text-align: center;
+				font-size: @font-size-half;
+				margin-top: 10px;
+				color: @main-blue-hover;
+				opacity: 0;
+				transition: 0.6s linear all;
+				&:hover {
+					opacity: 1;
+					transition: 0.6s linear all;
+				}
 			}
 		}
 	}
-
+	
 	.slide-block {
 		position: fixed;
 		padding: 20px;
