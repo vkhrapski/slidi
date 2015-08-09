@@ -2,7 +2,7 @@
 
 angular.module 'slidiApp'
 .factory 'User', ($resource) ->
-  $resource '/api/users/:id/:controller',
+  $resource '/api/users/:id/:controller/:entity',
     id: '@_id'
   ,
     changePassword:
@@ -21,9 +21,11 @@ angular.module 'slidiApp'
         id: 'me'
         controller: 'pictures'
 
-    update: 
+    addPresentation: 
       method: 'PUT'
       params:
         id: 'me'
+        controller: 'add'
+        entity: 'presentation'
 
 
