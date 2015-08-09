@@ -36,7 +36,10 @@ exports.update = function(req, res) {
     if(!presentation) { return res.status(404).send('Not Found'); }
     var updated = _.merge(presentation, req.body);
     updated.save(function (err) {
-      if (err) { return handleError(res, err); }
+      if (err) { 
+        console.log(err);
+        return handleError(res, err); 
+      }
       return res.status(200).json(presentation);
     });
   });

@@ -9,18 +9,17 @@
 		
 		$scope.create = () ->
 			PresentationService.create()
-		
+					
 		$scope.delete = (index) ->
-			PresentationService.delete index
+			PresentationService.delete(index)
 		
 		$scope.update = (presentation) ->
-			$scope.presentation.title = 'Updated'
-		
+
 		$scope.addTag = (presentation) -> 
 			PresentationService.addTag(presentation)
 		
 		$scope.deleteTag = (presentation, index) ->
-			PresentationService.deleteTag presentation, index
+			PresentationService.deleteTag(presentation, index)
 		
 		$scope.isLoggedIn = () -> 
 			Auth.isLoggedIn()
