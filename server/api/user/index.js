@@ -13,7 +13,9 @@ router.get('/me', auth.isAuthenticated(), controller.me);
 router.put('/me', auth.isAuthenticated(), controller.update);
 router.get('/me/pictures', auth.isAuthenticated(), controller.listPicture);
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
+router.put('/me/add/presentation', auth.isAuthenticated(), controller.addPresentation);
 router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/', controller.create);
+
 
 module.exports = router;

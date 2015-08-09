@@ -126,6 +126,22 @@ exports.update = function(req, res, next) {
 };
 
 /**
+ * Add presentation ref to presentations
+ */
+exports.addPresentation = function(req, res, next) {
+  var userId = req.userId;
+  var presentationId = req.presentationId;
+
+  User
+    .findOneAndUpdate(userId, {$push: {presentations: presentationId}}, { upsert: true }, 
+      function(err, user) {
+        if (err) return next(err);
+        res.json(user);
+      }
+    );
+};
+
+/**
  * Authentication callback
  */
 exports.authCallback = function(req, res, next) {
