@@ -115,15 +115,14 @@ exports.listPicture = function(req, res, next) {
  * Update my info
  */
 exports.update = function(req, res, next) {
-  var userId = req.user._id;
-  /*User
-    .findOne({_id: userId}, '-salt -hashedPassword')
-    .populate('presentations')
-    .exec(function(err, user) { // don't ever give out the password or salt
+  var user = req.user;
+  User
+    .findOneAndUpdate({_id: user._id}, user, {upsert: true}, 
+    function(err, user) {
       if (err) return next(err);
       if (!user) return res.status(401).send('Unauthorized');
       res.json(user);
-    });*/
+    });
 };
 
 /**
