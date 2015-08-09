@@ -7,7 +7,7 @@
   </div>
 </header>
 
-<div ng-show="isLoggedIn()" lass="container">
+<div ng-show="isLoggedIn()" class="container">
 	<div class="row content-container">
 		<div class="col-lg-12" >
 			<div class="presentation-block" ng-mouseenter="actionActive = true" 
@@ -28,21 +28,26 @@
 						ng-repeat="tag in presentation.tags track by $index">
 						<input class="btn btn-tag presentation-tag" type="text" ng-model="tag">
 						<div ng-class="{highlight: tagActive}" class="action-block action-delete-tag">
-							<i class="fa fa-times" ng-click="deleteTag(presentation.tags, $index)"></i>
+							<i class="fa fa-times" ng-click="deleteTag(presentation, $index)"></i>
 						</div>
 						<div class="icon-block">
 							<i class="fa fa-tag"></i>
 						</div>
 					</div>
 					<div class="action-add-tag-block">
-						<i ng-class="{highlight: actionActive}" class="action-block action-add-tag fa fa-plus-circle" ng-click="addTag(presentation.tags)"></i>
+						<i ng-class="{highlight: actionActive}" class="action-block action-add-tag fa fa-plus-circle" ng-click="addTag(presentation)"></i>
 					</div>
 				</div>
 			</div>
-			<div class="presentation-add-block" ng-click="addPresentation()">
+			<div class="presentation-add-block" ng-click="create()">
 				<i class="presentation-add-action fa fa-plus-circle" ></i>
 			</div>
 		</div>
+	</div>
+</div>
+<div ng-hide="isLoggedIn()" class="container">
+	<div class="row">
+		<div id="tags" words="words"></div>	
 	</div>
 </div>
 
