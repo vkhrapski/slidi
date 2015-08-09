@@ -3,28 +3,36 @@
 	PresentationService = () ->
 		#currentUser = Auth.getCurrentUser
 		presentations =	[
-    	_id: 1
-	    title: '(1)Title'
-	    tags: ['(1-1)Tag', '(1-2)Tag']
-	    slides: ['<h1>(1-1)Hello</h1>', '<h1>(1-2)Hello</h1>', '<h1>(1-3)Hello</h1>']
-	  , 
-    	_id: 2
-	    title: '(2)Title'
-	    tags: ['(2-1)Tag', '(2-2)Tag']
-	    slides: ['<h1>(2-1)Hello</h1>', '<h1>(2-2)Hello</h1>', '<h1>(2-3)Hello</h1>']
-	  ]
-		
+      _id: 1
+      title: '(1)Title'
+      format: 'square-format'
+      tags: ['(1-1)Tag', '(1-2)Tag', '(1-3)Tag', '(1-4)Tag']
+      slides: []
+		, 
+			_id: 2
+			title: '(1)Title'
+			format: 'square-format'
+			tags: ['(1-1)Tag', '(1-2)Tag', '(1-3)Tag', '(1-4)Tag']
+			slides: []
+  	]
 		list: () ->
 			presentations
-		create: (callback) ->
-			presentations.push
+		create: () ->
+			presentations.push(
 				_id: Math.floor(Math.random() * 1000)
 				title: 'Title'
-				tags: []
+				tags: ['tag']
 				slides: []
-		delete: (id) ->
-			presentations = presentations.filter(id) -> presentation._id isnt id
+			)
+		delete: (index) ->
+			presentations.splice index, 1
 		update: (presentation) ->
+
+		addTag: (presentation) ->
+			presentation.tags.push 'New tag'
+
+		deleteTag: (presentation, index) ->
+			presentation.tags.splice index, 1
 
 
 	PresentationService
