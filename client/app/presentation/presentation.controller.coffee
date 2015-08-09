@@ -13,8 +13,6 @@
 		$scope.delete = (index) ->
 			PresentationService.delete(index)
 		
-		$scope.update = (presentation) ->
-
 		$scope.addTag = (presentation) -> 
 			PresentationService.addTag(presentation)
 		

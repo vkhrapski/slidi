@@ -1,16 +1,6 @@
 'use strict'
 (->
 	PresentationService = (Auth, User, $http) ->
-		user = Auth.getCurrentUser()
-		presentations =	[ #user.presentations
-				title: '(1)Title'
-				format: 'square-format'
-				tags: ['(1-1)Tag', '(1-2)Tag', '(1-3)Tag', '(1-4)Tag']
-			,
-				title: '(2)Title'
-				format: 'square-format'
-				tags: ['(2-1)Tag', '(2-2)Tag', '(2-3)Tag', '(2-4)Tag']
-			]
 		emptyPresentation = 
 			title: 'Title'
 			tags: ['tag']
@@ -25,6 +15,88 @@
 				]
 				videos: []
 				shapes: []
+			]
+		user = Auth.getCurrentUser()
+		presentations =	[ #user.presentations
+				title: '(1)Title'
+				format: 'square-format'
+				tags: ['(1-1)Tag', '(1-2)Tag', '(1-3)Tag', '(1-4)Tag']
+				slides: [
+					text: [
+						style: 'position:absolute;left:300px;'
+						content: 'Hello'
+					]
+					pictures: [
+						style: 'position:absolute;left:270px;top:200px;'
+						content:	'tqdknvgjo7okb1bof78r'
+					]
+					videos: [
+					]
+					shapes: [
+					]
+				,
+					text: [
+					]
+					pictures: [
+					]
+					videos: [
+						style: ''
+						content: 'https://www.youtube.com/watch?v=bPH9L8jl68Q'
+					]
+					shapes: [
+					]
+				,
+					text: [
+					]
+					pictures: [
+						style: 'position:absolute;left:270px;top:200px;'
+						content:	'http://res.cloudinary.com/vkhrapski/image/upload/v1438934517/tqdknvgjo7okb1bof78r.jpg'
+					]
+					videos: [
+					]
+					shapes: [
+					]
+		  	]
+			,
+				title: '(2)Title'
+				format: 'square-format'
+				tags: ['(2-1)Tag', '(2-2)Tag', '(2-3)Tag', '(2-4)Tag']
+				slides: [
+					text: [
+						style: 'position:absolute;left:300px;'
+						content: 'Hello'
+					]
+					pictures: [
+						style: 'position:absolute;left:270px;top:200px;'
+						content:	'tqdknvgjo7okb1bof78r'
+					]
+					videos: [
+					]
+					shapes: [
+					]
+				,
+					text: [
+					]
+					pictures: [
+					]
+					videos: [
+						style: ''
+						content: 'https://www.youtube.com/watch?v=bPH9L8jl68Q'
+					]
+					shapes: [
+					]
+				,
+					text: [
+					]
+					pictures: [
+						style: 'position:absolute;left:270px;top:200px;'
+						content:	'http://res.cloudinary.com/vkhrapski/image/upload/v1438934517/tqdknvgjo7okb1bof78r.jpg'
+					]
+					videos: [
+					]
+					shapes: [
+					]
+		  	]
 			]
 		list: () ->
 			presentations
@@ -53,7 +125,9 @@
 		deleteTag: (presentation, index) ->
 			presentation.tags.splice index, 1
 
-
+		get: (index) ->
+			presentations[index]
+			
 	PresentationService
 		.$inject = ['Auth','User', '$http']
 	angular
