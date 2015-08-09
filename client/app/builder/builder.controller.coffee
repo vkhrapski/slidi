@@ -3,53 +3,9 @@
 ( ->
 	angular
 		.module 'slidiApp'
-		.controller 'BuilderCtrl', ($scope, $modal, Auth, $http, $rootScope, User) ->
-			$scope.rect = 
-					'"width":"1000px",
-          "height":"1000px",
-          "top":"0px",
-          "left":"0px"'
-			$scope.presentation = 
-				_id: 1
-				title: '(1)Title'
-				format: 'square-format'
-				tags: ['(1-1)Tag', '(1-2)Tag', '(1-3)Tag', '(1-4)Tag']
-				slides: [
-					text: [
-						style: 'position:absolute;left:300px;'
-						content: 'Hello'
-					]
-					pictures: [
-						style: 'position:absolute;left:270px;top:200px;'
-						content:	'tqdknvgjo7okb1bof78r'
-					]
-					videos: [
-					]
-					shapes: [
-					]
-				,
-					text: [
-					]
-					pictures: [
-					]
-					videos: [
-						style: ''
-						content: 'https://www.youtube.com/watch?v=bPH9L8jl68Q'
-					]
-					shapes: [
-					]
-				,
-					text: [
-					]
-					pictures: [
-						style: 'position:absolute;left:270px;top:200px;'
-						content:	'http://res.cloudinary.com/vkhrapski/image/upload/v1438934517/tqdknvgjo7okb1bof78r.jpg'
-					]
-					videos: [
-					]
-					shapes: [
-					]
-		  	]
+		.controller 'BuilderCtrl', ($scope, $modal, PresentationService) ->
+			
+			$scope.presentation = PresentationService.get(0)
 
 			$scope.currentSlide = $scope.presentation.slides[0]
 

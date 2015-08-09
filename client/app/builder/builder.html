@@ -21,9 +21,9 @@
 				</div>
 				<div class="item-description">Video</div>
 			</div>
-			<div class="slide-item-block">
+			<div class="slide-item-block" ng-click="addShape()">
 				<div class='item-icon'>
-					<i class="fa geometric-shapes"></i>
+					<i class="fa fa-stop"></i>
 				</div>
 				<div class="item-description">Shape</div>
 			</div>
@@ -33,7 +33,7 @@
 				</div>
 				<div class="item-description">Format</div>
 			</div>
-			<div class="slide-item-block" ng-click="">
+			<div class="slide-item-block" ng-click="save()">
 				<div class='item-icon'>
 					<i class="fa fa-floppy-o"></i>
 				</div>
@@ -63,7 +63,7 @@
 			<div class="slide-preview-block" ng-click="setCurrentSlide($index)" ng-repeat="slide in presentation.slides track by $index"
 				ng-mouseenter="activeSlide = true" ng-mouseleave="activeSlide = false"
 			>
-				<div>
+				<div class="slide-index-block">
 					{{$index + 1}}
 				</div>
 				<div class="action-block action-add-slide">
