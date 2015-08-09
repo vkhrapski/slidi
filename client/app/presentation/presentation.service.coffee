@@ -1,20 +1,8 @@
 'use strict'
 (->
-	PresentationService = () ->
-		#currentUser = Auth.getCurrentUser
-		presentations =	[
-      _id: 1
-      title: '(1)Title'
-      format: 'square-format'
-      tags: ['(1-1)Tag', '(1-2)Tag', '(1-3)Tag', '(1-4)Tag']
-      slides: []
-		, 
-			_id: 2
-			title: '(1)Title'
-			format: 'square-format'
-			tags: ['(1-1)Tag', '(1-2)Tag', '(1-3)Tag', '(1-4)Tag']
-			slides: []
-  	]
+	PresentationService = (Auth) ->
+		user = Auth.getCurrentUser()
+		presentations =	user.presentations
 		list: () ->
 			presentations
 		create: () ->
@@ -22,7 +10,9 @@
 				_id: Math.floor(Math.random() * 1000)
 				title: 'Title'
 				tags: ['tag']
-				slides: []
+				slides: [
+					
+				]
 			)
 		delete: (index) ->
 			presentations.splice index, 1
@@ -36,7 +26,7 @@
 
 
 	PresentationService
-		.$inject = []
+		.$inject = ['Auth']
 	angular
 		.module('slidiApp')
 		.factory('PresentationService', PresentationService)
