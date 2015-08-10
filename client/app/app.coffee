@@ -8,7 +8,8 @@ angular.module 'slidiApp', [
   'ui.bootstrap',
   'angular-cloudinary',
   'ngVideoPreview',
-  'angular-jqcloud'
+  'angular-jqcloud',
+  'dnd'
 ]
 .config ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, cloudinaryProvider) ->
   $urlRouterProvider
