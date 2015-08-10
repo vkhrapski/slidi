@@ -3,7 +3,15 @@
 	SlideService = (PresentationService) ->
 		
 		presentation = PresentationService.get(0)
-		
+		emptySlide = 
+			text: []
+			pictures: [
+					style: 'position:absolute;left:320px;top:200px;'
+					content:	'logo-yeoman.png'
+				]
+			videos: []
+			shapes: []
+
 		getCurrentPresentation: () -> 
 			presentation
 
@@ -21,6 +29,7 @@
           	top: '0'
 						left: '0'
         	}
+
 		addPicture: (slide, url) ->
 			slide.pictures.push
 				style: "position: absolute"
@@ -35,6 +44,15 @@
 			slide.shapes.push(
 				style: 'position:absolute; width: 400px; height: 300px;border: 2px solid #4393B9;background-color: grey;'
 			)
+
+		addBefore: (index) ->
+			presentation.slides.splice(index, 0, emptySlide)
+
+		addLast: ()->
+			presentation.slides.push(emptySlide)
+
+		delete: (index) ->
+			presentation.slides.splice(index, 1)
 
 	SlideService
 		.$inject = ['PresentationService']

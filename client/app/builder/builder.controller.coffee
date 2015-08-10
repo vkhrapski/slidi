@@ -10,7 +10,9 @@
 			$scope.currentSlide = $scope.presentation.slides[0]
 
 			$scope.setCurrentSlide = (index) ->
-				$scope.currentSlide = $scope.presentation.slides[index] 
+				$scope.currentSlide = $scope.presentation.slides[index]
+				console.log(index)
+				console.log($scope.currentSlide)
 			
 			$scope.addText = (slide, text) ->
 				SlideService.addText(slide, text)
@@ -26,6 +28,18 @@
 			
 			$scope.save = () ->
 
+			$scope.addBefore = (index) ->
+				SlideService.addBefore(index)
+
+			$scope.addLast = () ->
+				SlideService.addLast()
+				index = $scope.presentation.slides.length-1
+				console.log(index)
+				$scope.currentSlide = $scope.presentation.slides[index]
+
+			$scope.delete = (index) ->
+				SlideService.delete(index)
+				$scope.currentSlide = $scope.presentation.slides[0]
 
 			$scope.openTextModal = () ->
 				pictureModal = $modal.open

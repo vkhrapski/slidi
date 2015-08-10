@@ -45,7 +45,7 @@
 	<div class="row content-block">
 		<div class="slide-block col-xs-10">
 			<div class="slide-wrapper" ng-class="presentation.format">
-		    	<div class="slide" ng-class="presentation.format">
+		    	<div ng-hide="presentation.slides.length == 0" class="slide" ng-class="presentation.format">
 					<div style="{{textBlock.style}}" ng-repeat="textBlock in currentSlide.text track by $index"
 						class = "slide-input-block draggable handle draggable-content" 
 					 	ng-mouseenter="activeItem = true"
@@ -90,21 +90,21 @@
 
 	    <div class="slides-preview-block col-xs-2">
 			<div class="slide-preview-block" ng-click="setCurrentSlide($index)" ng-repeat="slide in presentation.slides track by $index"
-				ng-mouseenter="activeSlide = true" ng-mouseleave="activeSlide = false"
-			>
+				ng-mouseenter="activeSlide = true" ng-mouseleave="activeSlide = false">
 				<div class="slide-index-block">
 					{{$index + 1}}
 				</div>
+				<textarea ng-show="activeSlide">{{slide}}</textarea>
 				<div class="action-block action-add-slide">
-					<i class="fa fa-plus-circle"></i>
+					<i class="fa fa-plus-circle" ng-click="addBefore($index)"></i>
 				</div>
 				<div ng-class="{highlight: activeSlide}" class="action-block action-close">
-					<i class="fa fa-times"></i>
+					<i class="fa fa-times" ng-click="delete($index)"></i>
 				</div>
 			</div>
 			<div class="default-add-slide-block">
 				<div class="default-add-slide">
-					<i class="fa fa-plus-circle"></i>
+					<i class="fa fa-plus-circle" ng-click="addLast()"></i>
 				</div>
 			</div>
 		</div>

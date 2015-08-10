@@ -131,13 +131,13 @@
 				)###
 				
 		delete: (index) ->
-			presentations.splice index, 1
+			presentations.splice(index, 1)
 			
 		addTag: (presentation) ->
-			presentation.tags.push 'New tag'
+			presentation.tags.push('New tag')
 
 		deleteTag: (presentation, index) ->
-			presentation.tags.splice index, 1
+			presentation.tags.splice(index, 1)
 
 		get: (index) ->
 			presentations[index]
