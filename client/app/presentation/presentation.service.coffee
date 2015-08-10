@@ -6,8 +6,15 @@
 			tags: ['tag']
 			slides: [
 				text: [
-					style: 'position:absolute;left:300px;'
+					style: 'position:absolute;left:150px;'
 					content: 'Hello'
+					rect:  {
+          	height: '20px'
+          	transform: 'matrix(1, 0, 0, 1, 0, 0)'
+          	width: '100px'
+          	top: '0'
+						left: '0'
+        	}
 				]
 				pictures: [
 					style: 'position:absolute;left:270px;top:200px;'
@@ -25,9 +32,16 @@
 					text: [
 						style: 'position:absolute;left:300px;'
 						content: 'Hello'
+						rect:  {
+	          	height: '50px'
+	          	transform: 'matrix(1, 0, 0, 1, 0, 0)'
+	          	width: '100px'
+	          	top: '0'
+							left: '0'
+	        	}
 					]
 					pictures: [
-						style: 'position:absolute;left:270px;top:200px;'
+						style: 'position:absolute;'
 						content:	'tqdknvgjo7okb1bof78r'
 					]
 					videos: [
