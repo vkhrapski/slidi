@@ -62,23 +62,29 @@
 							{{textBlock.content}}
 					</div>
 					
-					<ng-video-preview source="youtube"  url="{{video.content}}" 
+					<ng-video-preview source="youtube"  url="{{video.content}}" player-width="734" player-height="550" 
 						ng-repeat="video in currentSlide.videos track by $index">
 					</ng-video-preview>
 					
 					<div style="{{picture.style}}" ng-repeat="picture in currentSlide.pictures track by $index"
-						class = "" 
-		                ng-click = "click(!$dragged, $dropmodel)"
 		                dnd-draggable = "true"
-		                dnd-rect = "picture.rect"
+		                dnd-containment="slide">
+		                <cl-image public-id="{{picture.content}}" format="jpg"></cl-image>
+					</div>
+
+					<div ng-repeat="shape in currentSlide.shapes track by $index"
+						class = "draggable handle draggable-shape" 
+					 	style="{{shape.style}}}" 
+		                ng-click = "click(!$dragged && !$resized, $dropmodel)"
+		                dnd-draggable = "true"
+		                dnd-resizable = "true"
+		                dnd-rect = "shape.rect"
+		                dnd-fittext = "{ width: shape.rect.width, height: shape.rect.height }"
 		                dnd-model = "currentSlide.content"
 		                dnd-containment="slide">
-		                <cl-image public-id="{{picture.content}}" format="jpg" >
-						</cl-image>
 					</div>
-					
 		    	</div>	
-			   
+			   	
 	    	</div>
 	    </div>
 
@@ -102,7 +108,7 @@
 				</div>
 			</div>
 		</div>
-
+		
 		
 	</div>
 </div>
@@ -112,9 +118,12 @@
         <h3 class="modal-title">Picture Repository</h3>
     </div>
     <div class="modal-body">
-		<div class="picture-block" ng-repeat="resource in resources"  ng-click="setActive($index)">
+		<div ng-hide="error" class="picture-block" ng-repeat="resource in resources"  ng-click="setActive($index)">
 			<img src="{{resource.url}}" width="150">
 			<i ng-show="$index == active" class="fa fa-check-square"></i>
+		</div>
+		<div ng-show="error">
+			{{error}}
 		</div>
 	</div>
     <div class="modal-footer">
@@ -142,7 +151,12 @@
         <h3 class="modal-title">Text</h3>
     </div>
     <div class="modal-body">
-    	Insert text: <input type="text" ng-model="text">
+    	<div>
+    		<label>Insert text:</label>
+    	</div>
+    	<div>
+    		<textarea ng-model="text"></textarea>
+		</div>
 	</div>
     <div class="modal-footer">
         <button class="btn btn-primary" ng-click="ok()">Submit</button>

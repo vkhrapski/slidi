@@ -3,50 +3,29 @@
 ( ->
 	angular
 		.module 'slidiApp'
-		.controller 'BuilderCtrl', ($scope, $modal, PresentationService) ->
+		.controller 'BuilderCtrl', ($scope, $modal, PresentationService, SlideService) ->
 			
-			$scope.presentation = PresentationService.get(0)
+			$scope.presentation = SlideService.getCurrentPresentation()
 
 			$scope.currentSlide = $scope.presentation.slides[0]
 
 			$scope.setCurrentSlide = (index) ->
 				$scope.currentSlide = $scope.presentation.slides[index] 
 			
-			$scope.addText = (text) ->
-				$scope.currentSlide.text.push
-					style: 'position:absolute;'
-					content: text
-					rect:  {
-          	height: null
-          	transform: 'matrix(1, 0, 0, 1, 0, 0)'
-          	width: null
-          	top: '0'
-						left: '0'
-        	}
+			$scope.addText = (slide, text) ->
+				SlideService.addText(slide, text)
 			
-			$scope.addPicture = (url) ->
-				$scope.currentSlide.pictures.push
-					style: 'position:absolute;'
-					content: url
-					rect:  {
-          	height: '0'
-          	transform: 'matrix(1, 0, 0, 1, 0, 0)'
-          	width: '0'
-          	top: '0'
-						left: '0'
-        	}
+			$scope.addPicture = (slide, url) ->
+				SlideService.addPicture(slide, url)
 			
-			$scope.addVideo = (link) ->
-				$scope.currentSlide.videos.push
-					style: ''
-					content: link
-					rect:  {
-          	height: '0'
-          	transform: 'matrix(1, 0, 0, 1, 0, 0)'
-          	width: '0'
-          	top: '0'
-						left: '0'
-        	}
+			$scope.addVideo = (slide, link) ->
+				SlideService.addVideo(slide, link)
+
+			$scope.addShape = () ->
+				SlideService.addShape($scope.currentSlide)
+			
+			$scope.save = () ->
+
 
 			$scope.openTextModal = () ->
 				pictureModal = $modal.open
@@ -55,7 +34,7 @@
 					controller: 'TextModalCtrl'
 				pictureModal.result
 					.then (text) ->
-						$scope.addText text
+						$scope.addText($scope.currentSlide, text)
 
 			$scope.openPictureModal = () ->
 				pictureModal = $modal.open
@@ -64,7 +43,7 @@
 					controller: 'PictureModalCtrl'
 				pictureModal.result
 					.then (url) ->
-						$scope.addPicture url
+						$scope.addPicture($scope.currentSlide, url)
 			
 			$scope.openYoutubeModal = () ->
 				youtubeModal = $modal.open
@@ -73,7 +52,7 @@
 					controller: 'YoutubeModalCtrl'
 				youtubeModal.result
 					.then (link) ->
-						$scope.addVideo link
+						$scope.addVideo($scope.currentSlide, link)
 
 			$scope.changeFormat = () ->
 				format = $scope.presentation.format 
@@ -82,12 +61,3 @@
 				$scope.presentation.format = rect if format == sq
 				$scope.presentation.format = sq if format == rect
 )()
-
-(->
-	angular
-		.module 'slidiApp'
-		.filter 'html', ($sce) ->
-			(html) ->
-				$sce.trustAsHtml html
-)()
-
