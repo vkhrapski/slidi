@@ -12,20 +12,50 @@
 			$scope.setCurrentSlide = (index) ->
 				$scope.currentSlide = $scope.presentation.slides[index] 
 			
-			$scope.addText = () ->
+			$scope.addText = (text) ->
 				$scope.currentSlide.text.push
-					style: 'position:absolute;top:400px;left:300px;'
-					content: 'Hello'
+					style: 'position:absolute;'
+					content: text
+					rect:  {
+          	height: null
+          	transform: 'matrix(1, 0, 0, 1, 0, 0)'
+          	width: null
+          	top: '0'
+						left: '0'
+        	}
 			
 			$scope.addPicture = (url) ->
 				$scope.currentSlide.pictures.push
-					style: 'position:absolute;top:400px;left:300px;'
+					style: 'position:absolute;'
 					content: url
+					rect:  {
+          	height: '0'
+          	transform: 'matrix(1, 0, 0, 1, 0, 0)'
+          	width: '0'
+          	top: '0'
+						left: '0'
+        	}
 			
 			$scope.addVideo = (link) ->
 				$scope.currentSlide.videos.push
 					style: ''
 					content: link
+					rect:  {
+          	height: '0'
+          	transform: 'matrix(1, 0, 0, 1, 0, 0)'
+          	width: '0'
+          	top: '0'
+						left: '0'
+        	}
+
+			$scope.openTextModal = () ->
+				pictureModal = $modal.open
+					animation: $scope.animationsEnabled,
+					templateUrl: 'text-modal.html',
+					controller: 'TextModalCtrl'
+				pictureModal.result
+					.then (text) ->
+						$scope.addText text
 
 			$scope.openPictureModal = () ->
 				pictureModal = $modal.open

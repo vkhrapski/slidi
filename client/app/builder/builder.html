@@ -3,7 +3,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="slide-items-block">
-	    	<div class="slide-item-block" ng-click="addText()">
+	    	<div class="slide-item-block" ng-click="openTextModal()">
 				<div class='item-icon'>T</div>
 				<div class="item-description">Text</div>
 			</div>
@@ -46,16 +46,39 @@
 		<div class="slide-block col-xs-10">
 			<div class="slide-wrapper" ng-class="presentation.format">
 		    	<div class="slide" ng-class="presentation.format">
-					<div style="{{textBlock.style}}" ng-repeat="textBlock in currentSlide.text track by $index">
-						{{textBlock.content}}
+					<div style="{{textBlock.style}}" ng-repeat="textBlock in currentSlide.text track by $index"
+						class = "slide-input-block draggable handle draggable-content" 
+					 	ng-mouseenter="activeItem = true"
+					 	ng-mouseleave="activeItem = false"
+					 	style="position: absolute;" 
+		                ng-class="{activetext : activeItem}"
+		                ng-click = "click(!$dragged && !$resized, $dropmodel)"
+		                dnd-draggable = "true"
+		                dnd-resizable = "true"
+		                dnd-rect = "textBlock.rect"
+		                dnd-fittext = "{ width: textBlock.rect.width, height: textBlock.rect.height }"
+		                dnd-model = "currentSlide.content"
+		                dnd-containment="slide">
+							{{textBlock.content}}
 					</div>
-					<ng-video-preview style="{{video.style}}" source="youtube"  url="{{video.content}}" 
+					
+					<ng-video-preview source="youtube"  url="{{video.content}}" 
 						ng-repeat="video in currentSlide.videos track by $index">
 					</ng-video-preview>
-					<cl-image style="{{picture.style}}" public-id="{{picture.content}}" format="jpg" 
-						ng-repeat="picture in currentSlide.pictures track by $index">
-					</cl-image>
+					
+					<div style="{{picture.style}}" ng-repeat="picture in currentSlide.pictures track by $index"
+						class = "" 
+		                ng-click = "click(!$dragged, $dropmodel)"
+		                dnd-draggable = "true"
+		                dnd-rect = "picture.rect"
+		                dnd-model = "currentSlide.content"
+		                dnd-containment="slide">
+		                <cl-image public-id="{{picture.content}}" format="jpg" >
+						</cl-image>
+					</div>
+					
 		    	</div>	
+			   
 	    	</div>
 	    </div>
 
@@ -90,7 +113,7 @@
     </div>
     <div class="modal-body">
 		<div class="picture-block" ng-repeat="resource in resources"  ng-click="setActive($index)">
-			<img src="{{resource.url}}">
+			<img src="{{resource.url}}" width="150">
 			<i ng-show="$index == active" class="fa fa-check-square"></i>
 		</div>
 	</div>
@@ -107,6 +130,19 @@
     </div>
     <div class="modal-body">
     	URL: <input type="text" ng-model="link">
+	</div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">Submit</button>
+        <button class="btn btn-danger" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="text-modal.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Text</h3>
+    </div>
+    <div class="modal-body">
+    	Insert text: <input type="text" ng-model="text">
 	</div>
     <div class="modal-footer">
         <button class="btn btn-primary" ng-click="ok()">Submit</button>
