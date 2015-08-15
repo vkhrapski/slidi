@@ -55,6 +55,7 @@
 		                ng-click = "click(!$dragged && !$resized, $dropmodel)"
 		                dnd-draggable = "true"
 		                dnd-resizable = "true"
+		                dnd-rotatable = "true"
 		                dnd-rect = "textBlock.rect"
 		                dnd-fittext = "{ width: textBlock.rect.width, height: textBlock.rect.height }"
 		                dnd-model = "currentSlide.content"
@@ -68,6 +69,7 @@
 					
 					<div style="{{picture.style}}" ng-repeat="picture in currentSlide.pictures track by $index"
 		                dnd-draggable = "true"
+		                dnd-rotatable = "true"
 		                dnd-containment="slide">
 		                <cl-image public-id="{{picture.content}}" format="jpg"></cl-image>
 					</div>
